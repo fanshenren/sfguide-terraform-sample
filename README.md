@@ -16,5 +16,5 @@ $ git status
 fatal: Not a git repository (or any of the parent directories): .git
 $ cd liggghts/
 $ git status
-# On branch master
+On branch master
 nothing to commit (working directory clean)

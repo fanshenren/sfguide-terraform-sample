@@ -20,7 +20,7 @@ resource "snowflake_database" "db" {
 }
 
 resource "snowflake_warehouse" "warehouse" {
-  name           = "TF_DEMO"
+  name           = "TF_DEMOWarehouse"
   warehouse_size = "small"
 
   auto_suspend = 60
@@ -28,6 +28,10 @@ resource "snowflake_warehouse" "warehouse" {
 provider "snowflake" {
     alias = "security_admin"
     role  = "SECURITYADMIN"
+    account = "EG26471"
+    private_key_path = "~/.ssh/snowflake_tf_snow_key.p8"
+    username = "tf-snow"
+    region = "AP-SOUTHEAST-2"
 }
 resource "snowflake_role" "role" {
     provider = snowflake.security_admin
@@ -42,7 +46,7 @@ resource "snowflake_database_grant" "grant" {
 }
 resource "snowflake_schema" "schema" {
     database   = snowflake_database.db.name
-    name       = "TF_DEMO"
+    name       = "TF_DEMOS2"
     is_managed = false
 }
 resource "snowflake_schema_grant" "grant" {
